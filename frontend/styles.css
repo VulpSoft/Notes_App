@@ -1,0 +1,34 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+}
+
+button {
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#app {
+    margin-top: 20px;
+}
+
+.note {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.note:hover {
+    background-color: #f0f0f0;
+}
+
+button.delete {
+    color: red;
+    margin-left: 10px;
+}
