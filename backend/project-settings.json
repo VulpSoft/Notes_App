@@ -1,0 +1,14 @@
+{
+"backend":{
+    "technology":"Python FastAPI",
+    "url": "https://notes-app-9tas.onrender.com/",
+    "hosting":"Render",
+    "repository":"https://github.com/vulpsoft/notes-app/backend"
+},
+"frontend":{
+    "technology":"vanilla JavaScript",
+    "url": "https://notes.vulp.website/",
+    "hosting":"Vercel",
+    "repository":"https://github.com/vulpsoft/notes-app/frontend"
+}
+}

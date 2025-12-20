@@ -1,5 +1,8 @@
+    projSettings = "/project-settings.json";
+    const backendUrl = JSON.parse(data).backend.url;
+    
     document.getElementById("btn").onclick = async () => {
-      const res = await fetch("http://127.0.0.1:8000/");
+      const res = await fetch(backendUrl);
       const data = await res.json();
       const output =  data.message;
       console.log(output);
@@ -10,7 +13,7 @@
    document.getElementById("send").onclick = async () => {
       const text = document.getElementById("text").value;
 
-      const res = await fetch("http://127.0.0.1:8000/echo", {
+      const res = await fetch(`${backendUrl}echo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
