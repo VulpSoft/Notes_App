@@ -2,7 +2,7 @@ if (import.meta.env) {
   const backendUrl = import.meta.env.VITE_API_BASE_URL;
 }
 else {
-  const backendUrl = API_BASE_URL;
+  const backendUrl = VITE_API_BASE_URL;
 }
 
 document.getElementById("btn").onclick = async () => {
