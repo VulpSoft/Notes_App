@@ -1,39 +1,33 @@
-# from fastapi import FastAPI
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import os
+from .config import get_env_vars
 
-# def main():
-#     print("Hello from backend!")
-#     app = FastAPI()
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class Message(BaseModel):
+    text: str
     
-#     @app.get("/")
-#     def read_root():
-#         return {"message": "Hello World"}
+@app.get("/")
+def read_root():
+    return {"message": "Hello FastAPI!",
+            "environment": os.getenv("ENVIRONMENT"),
+            "api_base_url": os.getenv("API_BASE_URL"),
+            "debug": os.getenv("DEBUG")
+           }
 
-#     read_root()
+@app.post("/echo")
+async def echo_message(msg: Message) -> dict:
+    return {
+        "received": msg.text,
+        "length": len(msg.text),
+    }
     
-
-# if __name__ == "__main__":
-#     main()
-
-import uvicorn
-# from fastapi import FastAPI
-
-# app = FastAPI()
-
-async def app(scope, receive, send):
-    assert scope['type'] == 'http'
-
-    await send({
-        'type': 'http.response.start',
-        'status': 200,
-        'headers': [
-            (b'content-type', b'text/plain'),
-            (b'content-length', b'13'),
-        ],
-    })
-    await send({
-        'type': 'http.response.body',
-        'body': b'Hello, world!',
-    })
-    
-if __name__ == "__main__":
-    uvicorn.run("main:app", port=5000, log_level="info")
